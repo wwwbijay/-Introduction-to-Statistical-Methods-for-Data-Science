@@ -73,10 +73,19 @@ BIC(model5)
 library(caret)
 library(klaR)
 # load the dataset
-data(customer_shopping_data)
 # define an 70%/30% train/test split of the dataset
 split=0.70
-trainIndex <- createDataPartition(y_1673241374123$v1, p=split, list=FALSE)
+X1trainIndex <- createDataPartition(x1, p=split, list=FALSE)
+X2trainIndex <- createDataPartition(x2, p=split, list=FALSE)
+X3trainIndex <- createDataPartition(x3, p=split, list=FALSE)
+X4trainIndex <- createDataPartition(x4, p=split, list=FALSE)
+YtrainIndex <- createDataPartition(y, p=split, list=FALSE)
+
+data_train <- iris[ trainIndex,]
+model <- NaiveBayes(Species~., data=data_train)
+
+data(customer_shopping_data)
+
 #data_train <- iris[ trainIndex,]
 #data_test <- iris[-trainIndex,]
 # train a naive bayes model
@@ -87,6 +96,8 @@ trainIndex <- createDataPartition(y_1673241374123$v1, p=split, list=FALSE)
 #predictions <- predict(model, x_test)
 # summarize results
 #confusionMatrix(predictions$class, y_test)
+
+
 
 
 
